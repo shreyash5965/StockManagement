@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Publish_2023\Stock_Management\API</_PublishTargetUrl>
+    <History>True|2023-02-03T17:58:57.7593129Z;True|2023-02-03T22:37:36.5557834+05:30;False|2023-02-03T22:36:15.7294990+05:30;True|2023-01-14T12:07:59.9465243+05:30;True|2023-01-14T12:07:24.4478280+05:30;</History>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=localhost%3bPort=5432%3bDatabase=postgres%3bUser id=postgres%3bPassword=postgres%3bCommandTimeout=20%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
