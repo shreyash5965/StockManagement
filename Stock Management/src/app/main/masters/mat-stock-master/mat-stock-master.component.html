@@ -1,0 +1,117 @@
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Masters/Stock Master</h4>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="mb-2" mat-flat-button color="primary" title="Add Stock" (click)="Add_Edit_Data(null)">
+                        <mat-icon>add</mat-icon> Add Stock
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="stockdetails text-center" style="display:none;height:500px !important; overflow-y: scroll;">
+                        <thead>
+                            <tr class="bg-color-primary">
+                                <th [width]="175">StockName</th>
+                                <th [width]="150">Short Name</th>
+                                <th [width]="500">Description</th>
+                                <th [width]="125">Lowest Price</th>
+                                <th [width]="125">Highest Price</th>
+                                <th [width]="125">Is Listed</th>
+                                <th [width]="150">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="stockData.length == 0">
+                                <td colspan="7" class="text-center">
+                                    No data avaiable
+                                </td>
+                            </tr>
+                            <tr *ngFor="let items of stockData">
+                                <td>{{items.strstockname}}</td>
+                                <td>{{items.strshortname}}</td>
+                                <td>{{items.strdescription}}</td>
+                                <td>{{items.intlowestprice | currency:"INR"}}</td>
+                                <td>{{items.inthighestprice | currency:"INR"}}</td>
+                                <td>{{items.islisted == true ? 'Listed' : 'Upcoming'}}</td>
+                                <td>
+                                    <button mat-mini-fab color="primary" title="Edit" 
+                                        (click)="Add_Edit_Data(items)"><mat-icon>edit</mat-icon></button>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <button mat-mini-fab color="warn" title="Delete" (click)="DeleteUser(items)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table mat-table [dataSource]="stockData" class="mat-elevation-z8"
+                    matSort matSortActive="strstockname" matSortDisableClear matSortDirection="desc">
+                        <ng-container matColumnDef="strstockname">
+                            <th mat-header-cell *matHeaderCellDef> Stock Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.strstockname}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="strshortname">
+                            <th mat-header-cell *matHeaderCellDef> Short Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.strshortname}} </td>
+                          </ng-container>
+                            
+                          <ng-container matColumnDef="intlowestprice">
+                            <th mat-header-cell *matHeaderCellDef> Lowest Price </th>
+                            <td mat-cell *matCellDef="let element"> {{element.intlowestprice}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="inthighestprice">
+                            <th mat-header-cell *matHeaderCellDef> Highest Price </th>
+                            <td mat-cell *matCellDef="let element"> {{element.inthighestprice}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="islisted">
+                            <th mat-header-cell *matHeaderCellDef> Is Listed? </th>
+                            <td mat-cell *matCellDef="let element"> {{element.islisted}} </td>
+                          </ng-container>
+                          
+                          <ng-container matColumnDef="strdescription">
+                            <th mat-header-cell *matHeaderCellDef> Description </th>
+                            <td mat-cell *matCellDef="let element"> {{element.strdescription}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="actions" wid>
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element">
+                                
+                                <button mat-mini-fab color="primary" title="Edit" 
+                                (click)="Add_Edit_Data(element)"><mat-icon>edit</mat-icon></button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button mat-mini-fab color="warn" title="Delete" (click)="DeleteUser(element)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>  
+                    
+                    <mat-paginator 
+                        [length]="stockData.length" 
+                        [pageSize]="5" >
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-mat-stock-master-dialog 
+    (Opened)="onCancel($event)"
+    *ngIf="isOpened" 
+    [isNew]="isNew" 
+    [model]="stockDetails" >
+</app-mat-stock-master-dialog>

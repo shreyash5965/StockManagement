@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center p-0">
+                <h3 class="title">{{isNew == true ? "Add" : "Edit"}} User</h3>
+                <span class="btnClose" (click)="onCancel()">&times;</span>
+            </div>
+        </div><br />
+        <form [formGroup] ="userForm" class="loginForm">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="Enter First Name" 
+                            class="form-control" 
+                            formControlName="strfirstname" />
+                        <mat-error *ngIf="userForm.controls.strfirstname.errors && (userForm.controls.strfirstname.touched || userForm.controls.strfirstname.dirty)">
+                            Please Enter First Name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Middle Name</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="Enter Middle Name" 
+                            class="form-control" 
+                            formControlName="strmiddlename" />
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="Enter Last Name" 
+                            class="form-control" 
+                            formControlName="strlastname" />
+                        <mat-error *ngIf="userForm.controls.strlastname.errors && (userForm.controls.strlastname.touched || userForm.controls.strlastname.dirty)">
+                            Please Enter Last Name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="Enter Username" 
+                            class="form-control" 
+                            formControlName="strusername" />
+                        <mat-error *ngIf="userForm.controls.strusername.errors && (userForm.controls.strusername.touched || userForm.controls.strusername.dirty)">
+                            Please Enter Username
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12" *ngIf="isNew">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input 
+                            matInput 
+                            [type]="showPassword ? 'text' : 'password'"
+                            placeholder="Enter password" 
+                            class="form-control" 
+                            formControlName="strpassword"/>
+                            <button class="border-none bg-trans" mat-icon-button matSuffix (click)="showPassword = !showPassword" 
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showPassword">
+                              <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            </button>
+                        <mat-error *ngIf="userForm.controls.strpassword.errors && (userForm.controls.strpassword.touched || userForm.controls.strpassword.dirty)">
+                            Please Enter Password
+                        </mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Birthdate</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dtdob" >
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle 
+                            matIconSuffix 
+                            [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input 
+                            matInput 
+                            type="email"
+                            placeholder="Enter Email" 
+                            class="form-control" 
+                            formControlName="stremailid"/>
+                            <!-- (change)="togglePassword(showPassword0.checked) -->
+                        <mat-error *ngIf="userForm.controls.stremailid.errors && (userForm.controls.stremailid.touched || userForm.controls.stremailid.dirty)">
+                            Please Enter Email
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Contact No.</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="Enter Contact No." 
+                            class="form-control" 
+                            formControlName="strcontactno"/>
+                            <!-- (change)="togglePassword(showPassword0.checked) -->
+                        <mat-error *ngIf="userForm.controls.strcontactno.errors && (userForm.controls.strcontactno.touched || userForm.controls.strcontactno.dirty)">
+                            Please Enter Contact No.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button mat-flat-button color="basic" id="btnCancel" (click)="onCancel()">
+                        Cancel <mat-icon>cancel</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button mat-flat-button color="primary" name="btnSubmit" (click)="onSubmit(userForm.value)"
+                        [disabled]= "userForm.invalid && !isLoading" *ngIf="!isLoading">
+                        Submit <mat-icon>check</mat-icon>
+                    </button>
+                    <img src="../../../../assets/Images/loading.gif" width="50" *ngIf="isLoading" />
+                </div>
+            </div><br />
+        </form>
+    </div>    
+</div>

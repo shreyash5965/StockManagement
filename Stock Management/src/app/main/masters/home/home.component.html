@@ -1,0 +1,49 @@
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Masters/User Master</h4>
+            <button class="btn btn-primary" (click)="routeData()">Route</button>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" title="Add Data" (click)="Add_Edit_Data(null)">Add User</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="text-center">
+                        <tr>
+                            <th [width]="175">Username</th>
+                            <th [width]="150">First Name</th>
+                            <th [width]="150">Middle Name</th>
+                            <th [width]="150">Last Name</th>
+                            <th [width]="275">Email ID</th>
+                            <th [width]="150">Contact No</th>
+                            <th [width]="175">Action</th>
+                        </tr>
+                        <tr *ngFor="let items of userData">
+                            <td>{{items.strusername}}</td>
+                            <td>{{items.strfirstname}}</td>
+                            <td>{{items.strmiddlename}}</td>
+                            <td>{{items.strlastname}}</td>
+                            <td>{{items.stremailid}}</td>
+                            <td>{{items.strcontactno}}</td>
+                            <td>
+                                <button class="btn btn-secondary" title="Edit Data" (click)="Add_Edit_Data(items)">Edit</button>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-danger" title="Delete Data" (click)="DeleteUser(items)">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-home-dialog 
+    (Opened)="onCancel($event)"
+    *ngIf="isOpened" 
+    [isNew]="isNew" 
+    [model]="userDetails" >
+</app-home-dialog>

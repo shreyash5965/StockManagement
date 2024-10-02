@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+    width: 7px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+.mat-mdc-form-field-error-wrapper { 
+    padding: 0 !important;
+    font-size: 14px;
+}
+.bg-color-primary{
+    background-color: #3f51b5;
+    color:white;
+}
+
+.h-35{
+    height: 35px;
+    line-height: 35px !important;
+}
+
+.font-weight-bold{
+    font-weight: bold;
+}
+
+.heading{
+    font-size: 20px;
+    color: #3f51b5;
+    font-weight: bold;
+}
+// .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix{
+//     padding: 5px 0px;
+// }
+
+// .dark{
+//     background-color: #2b2c2e;
+//     color: #e6e6e6;
+// }
+body {
+    overflow-x: hidden;
+  --text-color: #222;
+  --bkg-color: #fff;
+  color: #252222;
+  background-color: #fff !important;
+  --btn-txt-color: white !important;
+  --btn-bg-color: rgb(11, 88, 160);
+}
+body.dark {
+  --text-color: #eee;
+  --bkg-color: #252222;
+  color: #fff !important;
+  background-color: #252222 !important;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+}
+
+.white-icon{
+    color:white
+}
+
+.black-icon{
+    color:#626770
+}
+
+hr{
+    margin: 5px 0px !important;
+}
+
+// body {
+//   background-color: var(--bkg-color);
+// }
+
+@media only screen and (max-width: 600px) {
+    .lblUserName{
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .heading{
+        font-size: 15px;
+    }
+
+    .mat-icon{
+        width: 12px !important;
+        height: 12px !important;
+        font-size: 12px !important;
+    }
+    
+    .mat-mdc-slide-toggle{
+        transform: scale(0.6);
+    }
+}

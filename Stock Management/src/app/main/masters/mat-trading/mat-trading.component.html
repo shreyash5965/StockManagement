@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center p-0">
+                <h3 class="title h-35">{{isNew == true ? "Buy" : "Sell"}} Stock</h3>
+                <span class="btnClose" (click)="onCancel()">&times;</span>
+            </div>
+        </div><br />
+        <form [formGroup] ="stockForm" class="stockForm">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Buy/Sell</mat-label>
+                        <mat-select formControlName="strtrading"
+                            (valueChange)="onSelectStock($event)">
+                            <mat-option [value]="'Buy'">Buy</mat-option>
+                            <mat-option [value]="'Sell'">Sell</mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Stock Name</mat-label>
+                        <mat-select formControlName="intstockid" (valueChange)="onSelectStock($event)">
+                            <mat-option *ngIf="stockList.length > 0" [value]="0">Select</mat-option>
+                            <mat-option *ngFor="let item of stockList" [value]="item.intstockid">
+                              {{item.strshortname}}
+                            </mat-option>
+                          </mat-select>
+                        <mat-error *ngIf="stockForm.controls.strstockname.errors && (stockForm.controls.strstockname.touched || stockForm.controls.strstockname.dirty)">
+                            Please Select Stock
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Quantity</mat-label>
+                        <input type="number"
+                            min="1"
+                            matInput 
+                            placeholder="Enter Quantity" 
+                            class="form-control" 
+                            formControlName="intquantity" />
+                        <mat-error *ngIf="stockForm.controls.intquantity.errors && (stockForm.controls.intquantity.touched || stockForm.controls.intquantity.dirty)">
+                            Please Enter Quantity
+                        </mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{stockForm.controls.strtrading.value}} At</mat-label>
+                        <input type="number"
+                            min="min"
+                            max="max"
+                            matInput 
+                            placeholder="Enter Amount" 
+                            class="form-control" 
+                            formControlName="intstockprice" />
+                        <mat-error *ngIf="stockForm.controls.intstockprice.errors && (stockForm.controls.intstockprice.touched || stockForm.controls.intstockprice.dirty)">
+                            Please Enter Amount
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-hint style="font-weight: bold;" *ngIf="min != '' && max != ''"> Min Price: {{min}} & Max Price: {{max}}</mat-hint>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button mat-flat-button color="basic" id="btnCancel" (click)="onCancel()">
+                        Cancel <mat-icon>cancel</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button mat-flat-button color="primary" name="btnSubmit" (click)="onSubmit(stockForm.value)"
+                        [disabled]= "stockForm.invalid && !isLoading" *ngIf="!isLoading">
+                        Submit <mat-icon>check</mat-icon>
+                    </button>
+                    <img src="../../../../assets/Images/loading.gif" width="50" *ngIf="isLoading" />
+                </div>
+            </div><br />
+        </form>
+    </div>    
+</div>

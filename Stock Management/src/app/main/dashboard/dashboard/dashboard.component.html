@@ -1,0 +1,124 @@
+<div class="container-fluid">
+    <!-- <div class="row mt-2 mb-2">
+        <div class="col-12">
+            <span class="heading">Main/Dashboard</span>
+        </div>
+    </div> -->
+    <div class="row mt-3">
+        <div class="col-md-2 col-sm-12 box-shadow basic-info-div">
+            <div class="col-12 div-header text-center">
+                <span class="font-weight-bold">Basic Info.</span><hr/>
+            </div>
+            <div class="col-12" style="margin-left: 10px;">
+                <span class="font-weight-bold">Total Invested Value: </span><br />
+                <span class="amount-font">{{dashboardData.investment_data[0]?.invested_amount ?? 0.00 | currency:"INR"}}</span><br/><br/>
+    
+                <span class="font-weight-bold">Current Value:</span><br />
+                <span class="amount-font text-{{dashboardData.investment_data[0]?.today_value > dashboardData.investment_data[0]?.invested_amount ? 'success' : dashboardData.investment_data[0]?.today_value < dashboardData.investment_data[0]?.invested_amount ? 'danger' : ''}}">
+                    {{dashboardData.investment_data[0]?.today_value ?? 0.00 | currency:"INR"}}
+                </span><br/><br/>
+    
+                <span class="font-weight-bold">Total {{dashboardData.investment_data[0]?.profit_loss_amount > 0 ? 'Profit': 'Loss'}}(INR):</span><br />
+                <span class="amount-font text-{{dashboardData.investment_data[0]?.profit_loss_amount > 0 ? 'success' : dashboardData.investment_data[0]?.profit_loss_amount < 0 ? 'danger' : ''}}">
+                    {{dashboardData.investment_data[0]?.profit_loss_amount ?? 0.00 | currency:"INR"}}
+                </span><br/><br/>
+    
+                <span class="font-weight-bold">Total {{dashboardData.investment_data[0]?.profit_loss_amount > 0 ? 'Profit': 'Loss'}}(%):</span><br />
+                <span class="amount-font text-{{dashboardData.investment_data[0]?.profit_loss_percentage > 0 ? 'success' : dashboardData.investment_data[0]?.profit_loss_percentage < 0 ? 'danger' : ''}}">
+                    {{dashboardData.investment_data[0]?.profit_loss_percentage ?? 100 }}%
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 text-center box-shadow pie-chart-div">
+            <div class="col-12 div-header text-center">
+                <span class="font-weight-bold">Amount Invested Chart</span><hr/>
+            </div>
+            <div class="col-12">
+                <div echarts id="investment" [options]="investment_options" class="pie-chart"></div>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-12 text-center box-shadow bar-chart-div">
+            <div class="col-12 div-header text-center">
+                <span class="font-weight-bold">Profit/Loss Chart</span><hr/>
+            </div>
+            <div class="col-12">
+                <div echarts id="profit_loss" [options]="profit_loss_options" class="bar-chart"></div>
+            </div>
+        </div>
+    </div><br/>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 box-shadow div-width-95">
+            <div class="col-md-12">
+                <div class="col-md-12 div-header text-center">
+                    <span class="holding_header">Your Holdings</span>
+                    <mat-icon class="btn-style" (click)="buy_sell_stocks()">add</mat-icon>
+                    <hr/>
+                    <span *ngIf="dashboardData.profit_loss_data.length == 0">
+                        There are no stocks present in your account
+                    </span>
+                </div>
+                <div class="list-data">
+                    <div class="col-md-12 stock-list" *ngFor="let item of dashboardData.profit_loss_data;">
+                        <!-- <div class="container-fluid"> -->
+                            <div class="row">
+                                <div class="col-7">
+                                    <span class="font-weight-bold">{{item.strshortname}}</span>
+                                </div>
+                                <div class="col-5" style="text-align: right;"><span>Quantity: {{item.intquantity}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 col-12">
+                                    <span>(Avg.) {{item.intaverageboughtprice | currency: 'INR'}}</span>
+                                </div>
+                                <div class="col-sm-4 col-12">
+                                    <span>Today's Value: {{item.today_value ?? 0.00 | currency: 'INR'}}</span>
+                                </div>
+                                <div class="col-sm-5 col-12 istextright">
+                                    <span class="text-{{item.profit_loss_amount > 0 ? 'success' : item.profit_loss_amount < 0 ? 'danger' : ''}}">
+                                        Total {{item.profit_loss_amount > 0 ? 'Profit': 'Loss'}}:
+                                        {{item.profit_loss_amount ?? 0.00 | currency: 'INR'}}&nbsp;
+                                        ({{item.profit_loss_percentage ?? 100}}%)
+                                    </span>
+                                </div>
+                                <!-- <div class="col-6">
+                                    <span class="text-{{item.profit_loss_percentage > 0 ? 'success' : item.profit_loss_percentage < 0 ? 'danger' : ''}}">
+                                        Total {{item.profit_loss_amount > 0 ? 'Profit': 'Loss'}}(%):
+                                        {{item.profit_loss_percentage ?? 100}}%
+                                    </span>
+                                </div> -->
+                            </div>
+                        <!-- </div> -->
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 box-shadow div-width-95 div-margin">
+            <div class="col-12 div-header text-center">
+                <span class="holding_header">History</span>
+                <hr/>
+                <span *ngIf="dashboardData.history_data.length == 0">
+                    No history data found
+                </span>
+            </div>
+            <div class="list-data">
+                    <div class="row" style="padding: 5px 30px;" *ngFor="let item of dashboardData.history_data">
+                        <div class="col-12">
+                            You {{item.strtrading == 'Buy' ? 'bought' : 'sold'}} 
+                            <strong>{{item.intquantity}} {{item.strshortname}}</strong> at 
+                            <strong>{{item.intstockprice | currency: 'INR'}} </strong>
+                            on {{item.dtetradedon}}
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center; cursor: pointer;">
+                        <a class="font-weight-bold viewAll" href="main/trading-history" target="_blank">
+                            View All<mat-icon class="arrowTranslate">arrow_right_alt</mat-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<app-mat-trading [isNew]="isNew" *ngIf="isNew" (Opened)="onCancel($event)">
+</app-mat-trading>
