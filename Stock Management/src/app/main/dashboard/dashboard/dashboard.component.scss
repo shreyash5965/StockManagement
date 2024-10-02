@@ -1,0 +1,167 @@
+.container-fluid, [class*='col-']{
+    padding:0;
+}
+
+.amount-font{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.basic-info-div{
+    height: 300px;
+    margin: auto;
+}
+
+.div-width-95{
+    max-width: 900px;
+    width: calc(50% - 40px);
+    height:270px;
+    overflow-y: auto;
+    margin: auto;
+    overflow-x: hidden
+}
+
+.pie-chart,.bar-chart {
+    width: 95%;
+    height: 250px;
+    margin: auto;
+}
+
+.bar-chart-div, .pie-chart-div{
+    margin: 0px auto;
+    // overflow-x: auto;
+}
+
+.center-item-div{
+    display: flex;
+    justify-content: center;
+}
+
+.div-header{
+    padding: 10px 5px 0px 5px;
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+.sticky{
+    position: fixed;
+    width: calc(50% - 35px);
+}
+
+.holding_header{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.box-shadow{
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px grey;
+}
+
+.btn-style{
+    float: right;
+    cursor: pointer;
+}
+
+.list-data{
+    height: 217px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.arrowTranslate{
+    line-height: 1.6;
+}
+
+.viewAll:hover{
+    .arrowTranslate{
+        transform: translate(10px);
+        transition: 1s;
+    }
+}
+
+.stock-list{
+    padding: 5px 50px;
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+    margin: 0 auto;
+}
+.stock-list:hover{
+    transform: scale(1.05);
+}
+
+.istextright{
+    text-align: right;
+}
+
+@media only screen and (min-width: 840px) and (max-width: 1000px){
+    .div-width-95{
+        max-width: 475px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 840px) and (max-width: 900px) {
+    .amount-font{ font-size: 17px; }
+
+    .basic-info-div{
+        width: 380px;
+    }
+
+    .pie-chart-div{
+        width: 380px;
+    }
+    
+    .bar-chart-div{
+        width: calc(100% - 40px);
+        margin-top:20px;
+    }
+}
+
+@media only screen and (min-width: 250px) and (max-width: 840px) {
+    .amount-font{ font-size: 17px; }
+
+    .basic-info-div{
+        width: 340px;
+    }
+
+    .pie-chart-div{
+        width: 340px;
+    }
+
+    .bar-chart-div{
+        width: calc(100% - 40px);
+        margin-top:20px;
+    }
+
+    .div-width-95{
+        width: calc(100% - 40px);
+    }
+
+    .div-margin{
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (min-width: 250px) and (max-width: 687px) {
+    
+    .div-width-95, .pie-chart-div, .basic-info-div{
+        width: calc(100% - 40px);
+    }
+
+    .pie-chart-div{
+        margin-top: 20px;
+    }
+
+    .div-margin{
+        margin-top:20px;
+    }
+    
+    .istextright{
+        text-align: left;
+    }
+    
+    .mat-icon{
+        line-height: 1.4;
+    }
+}

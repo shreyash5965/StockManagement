@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header text-center">
+        <img class="ics-logo" src="../assets/Images/ics-logo.png" width="250" />
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="loginDiv">
+        <h2 class="header text-center">Welcome Back...!</h2>
+        <form [formGroup] ="loginForm" (ngSubmit) = "onSubmit(loginForm.value)" class="loginForm">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label for="strUserName">Username:</label>
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <input type="text" class="form-control" formControlName="strUserName" autofocus />
+                    <span class="cross-validation-error-message alert alert-danger"
+                    *ngIf= "loginForm.controls.strUserName.errors && (loginForm.controls.strUserName.dirty || loginForm.controls.strUserName.touched)">
+                        Please enter username 
+                    </span>
+                </div>
+            </div><br />            
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label for="strPassword">Password:</label>
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <input type="password" class="form-control" formControlName = "strPassword" />
+
+                    <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "loginForm.controls.strPassword.errors && (loginForm.controls.strPassword.dirty || loginForm.controls.strPassword.touched)"
+                        style="color:red">
+                        Please enter Password
+                    </span>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <input type="submit" class="btn btn-success" name="btnLogin" value="Login" *ngIf= "loginForm.invalid" disabled />
+                    <input type="submit" class="btn btn-success" name="btnLogin" value="Login" *ngIf= "!loginForm.invalid && !isLoading" />
+                    <img src="../../../../assets/Images/loading.gif" width="50" *ngIf="isLoading" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

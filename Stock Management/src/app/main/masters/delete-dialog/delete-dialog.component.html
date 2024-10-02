@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <span>Are you sure, you want to delete this {{data.headingText}}?</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button mat-flat-button color="basic" id="btnCancel" (click)="onSubmit(false)">
+                Cancel <mat-icon>cancel</mat-icon>
+            </button>
+            &nbsp;&nbsp;
+            <button mat-flat-button color="primary" name="btnSubmit" (click)="onSubmit(true)">
+                Submit <mat-icon>check</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

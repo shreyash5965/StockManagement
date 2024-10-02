@@ -1,0 +1,54 @@
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Masters/User Master</h4>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="mb-2" mat-flat-button color="primary" title="Add User" (click)="Add_Edit_Data(null)">
+                        <mat-icon>add</mat-icon> Add User
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="text-center">
+                        <tr class="bg-color-primary">
+                            <th [width]="175">Username</th>
+                            <th [width]="150">First Name</th>
+                            <th [width]="150">Middle Name</th>
+                            <th [width]="150">Last Name</th>
+                            <th [width]="275">Email ID</th>
+                            <th [width]="150">Contact No</th>
+                            <th [width]="175">Action</th>
+                        </tr>
+                        <tr *ngFor="let items of userData">
+                            <td>{{items.strusername}}</td>
+                            <td>{{items.strfirstname}}</td>
+                            <td>{{items.strmiddlename}}</td>
+                            <td>{{items.strlastname}}</td>
+                            <td>{{items.stremailid}}</td>
+                            <td>{{items.strcontactno}}</td>
+                            <td>
+                                <button mat-mini-fab color="primary" title="Edit" 
+                                    (click)="Add_Edit_Data(items)"><mat-icon>edit</mat-icon></button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button mat-mini-fab color="warn" title="Delete" (click)="DeleteUser(items)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-mat-home-dialog 
+    (Opened)="onCancel($event)"
+    *ngIf="isOpened" 
+    [isNew]="isNew" 
+    [model]="userDetails" >
+</app-mat-home-dialog>

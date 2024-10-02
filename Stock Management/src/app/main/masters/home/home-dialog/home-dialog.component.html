@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center p-0">
+                <h3 class="title">{{isNew == true ? "Add" : "Edit"}} User</h3>
+                <span class="btnClose" (click)="onCancel()">&times;</span>
+            </div>
+        </div><br />
+        <form [formGroup] ="userForm" class="loginForm">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="strfirstname">First Name:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" formControlName="strfirstname" autofocus />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strfirstname.errors && (userForm.controls.strfirstname.dirty || userForm.controls.strfirstname.touched)">
+                            Please enter first name 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="strPassword">Middle Name:</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" formControlName="strmiddlename" />
+                        <!-- <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strpassword.errors && (userForm.controls.strpassword.dirty || userForm.controls.strpassword.touched)">
+                            Please enter password 
+                        </span> -->
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="strlastname">Last Name:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" formControlName="strlastname" />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strlastname.errors && (userForm.controls.strlastname.dirty || userForm.controls.strlastname.touched)">
+                            Please enter last name 
+                        </span>
+                    </div>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="strUserName">Username:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" formControlName="strusername" />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strusername.errors && (userForm.controls.strusername.dirty || userForm.controls.strusername.touched)">
+                            Please enter username 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12" *ngIf="isNew">
+                    <div class="col-sm-12">
+                        <label for="strPassword">Password:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <div *ngIf="isNew" >
+                            <input [type]="showPassword == true ? 'text' : 'password'" class="form-control" class="form-control" formControlName="strpassword" *ngIf="isNew" />
+                            <input type="checkbox" #showPassword0 id="showPassword0" [checked]="showPassword" (change)="togglePassword(showPassword0.checked)"/> Show Password
+                        </div>
+                        <input type="password" class="form-control" formControlName="strpassword" *ngIf="!isNew" readonly />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strpassword.errors && (userForm.controls.strpassword.dirty || userForm.controls.strpassword.touched)">
+                            Please enter password 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="dtedob">Birthdate:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="date" class="form-control" formControlName="dtedob" />
+                        <!-- <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.dtedob.errors && (userForm.controls.dtedob.dirty || userForm.controls.dtedob.touched)">
+                            Please select birthdate 
+                        </span> -->
+                    </div>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="stremailid">EmailID:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" formControlName="stremailid" />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.stremailid.errors && (userForm.controls.stremailid.dirty || userForm.controls.stremailid.touched)">
+                            Please enter email id 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-sm-12">
+                        <label for="strcontactno">Contact No:<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="number" class="form-control" formControlName="strcontactno" maxlength="10" />
+                        <span class="cross-validation-error-message alert alert-danger"
+                        *ngIf= "userForm.controls.strcontactno.errors && (userForm.controls.strcontactno.dirty || userForm.controls.strcontactno.touched)">
+                            Please enter contact no 
+                        </span>
+                    </div>
+                </div>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <input type="submit" class="btn btn-success" name="btnSubmit" value="Submit" *ngIf= "userForm.invalid" disabled />
+                    <input type="submit" class="btn btn-success" name="btnSubmit" value="Submit" (click)="onSubmit(userForm.value)" *ngIf= "!userForm.invalid && !isLoading" />
+                    <img src="../../../../assets/Images/loading.gif" width="50" *ngIf="isLoading" />
+                    &nbsp;&nbsp;<button class="btn btn-secondary" id="btnCancel" (click)="onCancel()">Cancel</button>
+                </div>
+            </div><br />
+        </form>
+    </div>    
+</div>

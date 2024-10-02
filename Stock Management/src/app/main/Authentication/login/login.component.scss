@@ -1,0 +1,73 @@
+body{
+    background-image: url("../../../../assets/Images/login-bg-img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ics-logo{
+    width: 150px;
+    height: 50px;
+}
+
+.loginDiv{
+    width:35%;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;  
+    box-shadow: 5px 10px 5px gray; 
+}
+
+h2.header{
+    color:white;
+    margin: 0;
+    background-color: #5fc7c2;
+}
+
+// input[type=text], input[type=password]
+// {
+    
+// }
+
+.loginForm{
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.alert-danger{
+    position: absolute;
+    // height: 35px;
+    margin: 0;
+    // right:35px;
+    padding: 5px;
+    color:red
+}
+
+//
+
+
+// @media only screen and (min-width: 840px) and (max-width: 1000px){
+    
+// }
+
+@media only screen and (min-width: 640px) and (max-width: 840px) {
+    
+    .loginDiv{
+        width:370px;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 640px) {
+
+    .loginDiv{
+        width:370px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+
+    .loginDiv{
+        width:calc(100% - 20px);
+    }
+}

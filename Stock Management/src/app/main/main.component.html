@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <!-- <img src="../../assets/Images/ics-logo.png" width="100" title="Intech" alt="Intech" /> -->
+            
+            <!-- <mat-toolbar color="primary">
+                <mat-toolbar-row>
+                    <mat-icon (click)="sidenav.toggle()" class="btnMenu">menu</mat-icon>
+                </mat-toolbar-row>
+            </mat-toolbar>
+            <mat-sidenav-container>
+                <mat-sidenav #sidenav>
+                    <mat-nav-list>
+                        <mat-icon>dashboard</mat-icon>&nbsp;
+                        <a class="pageName" routerLink="/dashboard">Dashboard</a>
+                        
+                        <mat-icon>home</mat-icon>&nbsp;
+                        <a class="pageName" routerLink="/mat-home-master">Stock Master</a>
+
+                        <mat-icon>history</mat-icon>&nbsp;
+                        <a class="pageName" routerLink="/dashboard">History</a>
+                    </mat-nav-list>
+                </mat-sidenav>
+                <mat-sidenav-content>
+                    <div style="height:88vh"></div>
+                </mat-sidenav-content>
+            </mat-sidenav-container> -->
+        </div>
+        <div class="col-9" style="display: flex;">
+            <div style="margin-left: auto;">
+                <mat-slide-toggle
+                color="black"
+                [(ngModel)]="isDarkModeOn"
+                (change)="onDarkModeToggle()">
+            </mat-slide-toggle>
+            <span class="lblUserName">
+                {{isDarkModeOn ? 'Dark' : 'Light'}} Mode
+            </span>&nbsp;
+            </div>
+        <mat-icon class="{{isDarkModeOn ? 'white' : 'black'}}-icon">
+            {{isDarkModeOn ? 'brightness_2' : 'wb_sunny'}}
+        </mat-icon>&nbsp;
+        <label class="font-weight-bold lblUserName"> Hello {{FullName}}</label>&nbsp;
+        <!-- <i class="bi bi-power"></i> -->
+            <!-- <img src="../../assets/Images/logout.webp" width="20"> -->
+        <mat-icon class="logoutIcon {{isDarkModeOn ? 'white' : 'black'}}-icon" (click)="logout()">power_settings_new</mat-icon>
+        </div>
+        <div class="col-md-2 col-sm-12" style="display: flex;">
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="container-fluid sideNav" #sideNav>
+    <div class="row pos-abs">
+        <div class="col-12">
+            <mat-icon>dashboard</mat-icon>&nbsp;
+            <a class="pageName" routerLink="/dashboard">Dashboard</a>
+        </div>
+        <div class="col-12">
+            <mat-icon>home</mat-icon>&nbsp;
+            <a class="pageName" routerLink="/mat-home-master">Stock Master</a>
+        </div>
+        <div class="col-12">
+            <mat-icon>history</mat-icon>&nbsp;
+            <a class="pageName" routerLink="/dashboard">History</a>
+        </div>
+    </div>
+</div> -->
+
+<router-outlet></router-outlet>
